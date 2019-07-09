@@ -1,0 +1,23 @@
+#lottery{width:760px;height:510px;margin:0px auto;border:4px solid #3fa9f0;}
+#lottery table{background-color:rgb(255, 255, 255);}
+#lottery table td{position:relative;width:190px;height:170px;text-align:center;color:#333;font-index:-999}
+#lottery table td img{display:block;width:190px;height:170px;}
+#lottery table td a{width:190px;height:170px;display:block;text-decoration:none;background:rgb(255, 255, 255) no-repeat top center;}
+#lottery table td a:hover{background:rgb(35, 93, 219);}
+#lottery table td.active .mask{display:block;}
+.mask{
+    width:100%;
+    height:100%;
+    position:absolute;
+    left:0;
+    top:0;
+    background:rgba(221, 76, 76, 0.5) no-repeat;
+    display:none;
+}
+.showcase {
+    position: relative;
+    padding: 30px 30px;
+    margin:0px auto;
+    width: 600px;
+    height: 100px;
+}
