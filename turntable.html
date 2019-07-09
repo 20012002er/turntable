@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>垃圾分类大转盘</title>
+<link rel="stylesheet" href="css/buttons.css">
+<link rel="stylesheet" href="css/alertify.min.css">
+<link rel="stylesheet" href="css/themes/default.min.css">
+<script src="js/alertify.min.js"></script>
+<style>
+#lottery{width:760px;height:510px;margin:0px auto;border:4px solid #3fa9f0;}
+#lottery table{background-color:rgb(255, 255, 255);}
+#lottery table td{position:relative;width:190px;height:170px;text-align:center;color:#333;font-index:-999}
+#lottery table td img{display:block;width:190px;height:170px;}
+#lottery table td a{width:190px;height:170px;display:block;text-decoration:none;background:rgb(255, 255, 255) no-repeat top center;}
+#lottery table td a:hover{background:rgb(35, 93, 219);}
+#lottery table td.active .mask{display:block;}
+.mask{
+    width:100%;
+    height:100%;
+    position:absolute;
+    left:0;
+    top:0;
+    background:rgba(221, 76, 76, 0.5) no-repeat;
+    display:none;
+}
+.showcase {
+    position: relative;
+    padding: 30px 30px;
+    margin:0px auto;
+    width: 600px;
+    height: 100px;
+}
+</style>
+</head>
+<body class="keBody">
+<!--效果html开始-->
+<div id="lottery">
+    <table border="0" cellpadding="0" cellspacing="0">
+        <tr>
+            <td class="lottery-unit">
+                <img src="images/gd1.jpg"><div class="mask"></div>
+            </td>
+            <td class="lottery-unit"><img src="images/gd3.jpg"><div class="mask"></div></td>
+            <td class="lottery-unit"><img src="images/gd4.jpg"><div class="mask"></div></td>
+            <td class="lottery-unit"><img src="images/gd11.jpg"><div class="mask"></div></td>
+        </tr>
+        <tr>
+            <td class="lottery-unit"><img src="images/gd5.jpg"><div class="mask"></div></td>
+            <td class="lottery-unit"><img src="images/gd10.jpg"><div class="mask"></div></td>
+            <td class="lottery-unit"><img src="images/gd6.jpg"><div class="mask"></div></td>
+            <td class="lottery-unit"><img src="images/gd12.jpg"><div class="mask"></div></td>
+        </tr>
+        <tr>
+            <td class="lottery-unit"><img src="images/gd7.jpg"><div class="mask"></div></td>
+            <td class="lottery-unit"><img src="images/gd8.jpg"><div class="mask"></div></td>
+            <td class="lottery-unit"><img src="images/gd9.jpg"><div class="mask"></div></td>
+            <td class="lottery-unit"><img src="images/gd13.jpg"><div class="mask"></div></td>
+        </tr>
+    </table>
+</div>
+<div class="showcase">
+    <button id="roll_btn" class="button button-primary button-rounded button-giant">开始</button>
+    <button id="stop_btn" class="button button-caution button-rounded button-giant">停止</button>
+    <button id="reset_btn" class="button button-rounded button-giant">重置</button>
+</div>
+
+<script src="js/jquery-latest.js"></script>
+<script type="text/javascript">
+var lottery={
+    index:-1,    //当前转动到哪个位置，起点位置`
+    count:0,    //总共有多少个位置
+    timer:0,    //setTimeout的ID，用clearTimeout清除
+    speed:20,    //初始转动速度
+    times:0,    //转动次数
+    cycle:50,    //转动基本次数：即至少需要转动多少次再进入抽奖环节
+    prize:-1,    //中奖位置
+    init:function(id){
+        $("#"+id).find("td").removeAttr("unit-index");
+        if ($("#"+id).find(".lottery-unit").length>0) {
+            $lottery = $("#"+id);
+            $units = $lottery.find(".lottery-unit");
+            this.obj = $lottery;
+            this.count = $units.length;
+            $units.each(function(index) {
+                $(this).attr("unit-index", index);
+            });
+            // $lottery.find(".lottery-unit-"+this.index).addClass("active");
+        };
+    },
+    roll:function(){
+        var index = this.index;
+        var count = this.count;
+        var lottery = this.obj;
+        $(lottery).find(".lottery-unit").each(function() {
+            var i = $(this).attr("unit-index");
+            if (i == index) {
+                $(this).removeClass("active");
+            }
+        });
+        //$(lottery).find(".lottery-unit-"+index).removeClass("active");
+        index += 1;
+        if (index>count-1) {
+            index = 0;
+        };
+        $(lottery).find(".lottery-unit").each(function() {
+            var i = $(this).attr("unit-index");
+            if (i == index) {
+                $(this).addClass("active");
+            }
+        });
+        //$(lottery).find(".lottery-unit-"+index).addClass("active");
+        this.index=index;
+        return false;
+    },
+    stop:function(index){
+        this.prize=index;
+        return false;
+    }
+};
+
+function roll(){
+    var index = 0;
+    lottery.times += 1;
+    lottery.roll();//转动过程调用的是lottery的roll方法，这里是第一次调用初始化
+    // if (lottery.times > lottery.cycle+10 && lottery.prize==lottery.index) {
+    //     clearTimeout(lottery.timer);
+    //     // alert(lottery.prize);
+    //     lottery.prize=-1;
+    //     lottery.times=0;
+    //     click=false;
+    // }else{
+        // if (lottery.times<lottery.cycle) {
+        //     lottery.speed -= 10;
+        // }else if(lottery.times==lottery.cycle) {
+        //     index = Math.random()*(lottery.count)|0;
+        //     lottery.prize = index;        
+        // }else{
+        //     if (lottery.times > lottery.cycle+10 && ((lottery.prize==0 && lottery.index==7) || lottery.prize==lottery.index+1)) {
+        //         lottery.speed += 110;
+        //     }else{
+        //         lottery.speed += 20;
+        //     }
+        // }
+        if (lottery.speed<40) {
+            lottery.speed=40;
+        };
+        console.log(lottery.times+'^^^^^^'+lottery.speed+'^^^^^^^'+lottery.prize);
+        lottery.timer = setTimeout(roll,lottery.speed);//循环调用
+    // }
+    return false;
+}
+
+function stop() {
+    clearTimeout(lottery.timer);
+    lottery.prize=-1;
+    lottery.times=0;
+    click=false;
+    return false;
+}
+
+var click=false;
+
+window.onload=function(){
+    lottery.init('lottery');
+    $("#roll_btn").click(function(){
+        if (click) {//click控制一次抽奖过程中不能重复点击抽奖按钮，后面的点击不响应
+            return false;
+        }else{
+            lottery.speed=100;
+            roll();
+            click=true; //一次抽奖完成后，设置click为true，可继续抽奖
+            return false;
+        }
+    });
+    $("#stop_btn").click(function() {
+        stop();
+        $("td").each(function() {
+            if ($(this).hasClass("active")) {
+                var $img_td = $(this);
+                var img_src = $(this).children("img").attr("src");
+                alertify.alert('这是什么垃圾？', '<img src="' + img_src + '" style="height: 300px; width: 450px;"></img>', function() {
+                    $img_td.removeClass();
+                    $img_td.children().remove();
+                    lottery.init('lottery');
+                });
+            }
+        });
+        click=false;
+        return false;
+    });
+    $('#reset_btn').click(function() {
+        window.location.reload();
+    });
+};
+</script>
+<!--效果html结束-->
+
+</body>
+</html>
