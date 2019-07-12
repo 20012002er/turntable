@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>bomb</title>
+<link rel="stylesheet" href="css/buttons.css">
+<link rel="stylesheet" href="css/alertify.min.css">
+<link rel="stylesheet" href="css/themes/default.min.css">
+<link rel="stylesheet" href="fontawesome/css/all.min.css">
+<link rel="stylesheet" href="css/bomb.css">
+<script src="js/alertify.min.js"></script>
+<script src="fontawesome/js/all.min.js"></script>
+</head>
+<body class="keBody">
+
+<div id="lottery">
+    <table border="0" cellpadding="0" cellspacing="0">
+        <tr>
+            <td class="lottery-unit blue">5<div class="mask"></div></td>
+            <td class="lottery-unit yellow">10<div class="mask"></div></td>
+            <td class="lottery-unit blue">5<div class="mask"></div></td>
+            <td class="lottery-unit green">20<div class="mask"></div></td>
+            <td class="lottery-unit blue">5<div class="mask"></div></td>
+        </tr>
+        <tr>
+            <td class="lottery-unit yellow">10<div class="mask"></div></td>
+            <td class="lottery-unit yellow">10<div class="mask"></div></td>
+            <td class="lottery-unit black">
+                <i class="fas fa-bomb" style="font-size: 60px;"></i>    
+            <div class="mask"></div></td>
+            <td class="lottery-unit yellow">10<div class="mask"></div></td>
+            <td class="lottery-unit blue">5<div class="mask"></div></td>
+        </tr>
+        <tr>
+            <td class="lottery-unit blue">5<div class="mask"></div></td>
+            <td class="lottery-unit blue">5<div class="mask"></div></td>
+            <td id="roll_btn">
+                <button class="button button-royal button-raised button-square button-giant">GO</button>
+            </td>
+            <td class="lottery-unit yellow">10<div class="mask"></div></td>
+            <td class="lottery-unit blue">5<div class="mask"></div></td>
+        </tr>
+        <tr>
+            <td class="lottery-unit green">20<div class="mask"></div></td>
+            <td class="lottery-unit red">30<div class="mask"></div></td>
+            <td class="lottery-unit blue">5<div class="mask"></div></td>
+            <td class="lottery-unit blue">5<div class="mask"></div></td>
+            <td class="lottery-unit blue">5<div class="mask"></div></td>
+        </tr>
+        <tr>
+            <td class="lottery-unit blue">5<div class="mask"></div></td>
+            <td class="lottery-unit blue">5<div class="mask"></div></td>
+            <td class="lottery-unit yellow">10<div class="mask"></div></td>
+            <td class="lottery-unit blue">5<div class="mask"></div></td>
+            <td class="lottery-unit black"><i class="fas fa-bomb" style="font-size: 60px;"></i><div class="mask"></div></td>
+        </tr>
+    </table>
+</div>
+<!-- <div class="showcase">
+    <button id="roll_btn" class="button button-primary button-rounded button-giant">开始</button>
+    <button id="stop_btn" class="button button-caution button-rounded button-giant">停止</button>
+    <button id="reset_btn" class="button button-rounded button-giant">重置</button>
+</div> -->
+
+<audio id="bgMusic" src="assets/bgm.mp3" preload loop="loop"></audio>
+
+<script src="js/jquery-latest.js"></script>
+<script src="js/bomb.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,47 @@
+#lottery{width:658px;height:658px;margin:0px auto;border: 2px solid grey;}
+#lottery table{background-color:rgb(255, 255, 255);}
+#lottery table td{position:relative;width:130px;height:130px;text-align:center;color:#fff;font-index:-999; border: 1px solid grey;}
+#lottery table td img{display:block;width:130px;height:130px;}
+#lottery table td a{width:130px;height:130px;display:block;text-decoration:none;background:rgb(255, 255, 255) no-repeat top center;}
+#lottery table td a:hover{background:rgb(35, 93, 219);}
+#lottery table td.active .mask{display:block;}
+.lottery-unit{
+    font-size: 45px;
+    font-family: "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+}
+.blue{
+    background-color: #1B9AF7;
+}
+.green{
+    background-color: #A5DE37;
+}
+.red{
+    background-color: #FF4351;
+}
+.yellow{
+    background-color: #f3ab26;
+}
+.black{
+    background-color: #151515;
+}
+.mask{
+    width:100%;
+    height:100%;
+    position:absolute;
+    left:0;
+    top:0;
+    background:rgba(59, 54, 54, 0.7) no-repeat;
+    display:none;
+}
+.showcase {
+    position: relative;
+    padding: 30px 30px;
+    margin:0px auto;
+    width: 600px;
+    height: 100px;
+}
+#roll_btn button{
+    height: 130px;
+    width: 130px;
+    font-size: 45px;
+}
